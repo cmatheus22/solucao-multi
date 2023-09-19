@@ -1,0 +1,21 @@
+import pandas as pd
+
+# Carregar dados de vendas e investimentos
+dados_vendas = pd.read_csv('dados_vendas.csv')
+dados_investimentos = pd.read_csv('dados_investimentos.csv')
+
+# Calcular o lucro total
+lucro_total = dados_vendas['Receita'].sum() - dados_vendas['Custo'].sum()
+
+# Verificar discrepâncias de valores
+discrepancias = dados_vendas[dados_vendas['Receita'] - dados_vendas['Custo'] < 0]
+
+# Calcular o retorno de investimentos
+investimentos_total = dados_investimentos['Valor'].sum()
+retorno_investimentos = lucro_total / investimentos_total
+
+# Exibir os resultados
+print(f'Lucro total: R${lucro_total}')
+print('Discrepâncias de valores:')
+print(discrepancias)
+print(f'Retorno de investimentos: {retorno_investimentos:.2f}%')
